@@ -1,11 +1,10 @@
+import Logo from "./Components/UI/Logo";
 import TranslateBox from "./Components/UI/TranslateBox";
 
 export default function App() {
   return (
     <main className="flex items-center justify-center content-center flex-wrap gap-6 w-full h-full">
-      <h1 className="text-2xl font-bold text-center w-full mb-10 text-white">
-        translated.io
-      </h1>
+      <Logo />
       <TranslateBox>
         <header>
           <button>Português</button>
