@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        boxF: "#0A0412",
+        boxT: "#191226",
+      },
       backgroundImage: {
         backgroundApp:
           "url('./src/assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg')",
