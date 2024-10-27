@@ -8,6 +8,8 @@ export default {
         boxT: "#292C3F",
         border: "#4D5562",
         textColor: "#F9FAFB",
+        textColor2: "#7A879B",
+        languageBg: "#4D5562",
       },
       backgroundImage: {
         backgroundApp:

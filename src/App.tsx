@@ -7,8 +7,10 @@ export default function App() {
     <Container>
       <Logo />
       <TranslateBox>
-        <header className="flex items-center gap-8">
-          <button className="text-textColor">Português</button>
+        <header className="flex items-center gap-8 border-b border-border p-2 pb-4">
+          <button className="text-textColor font-semibold	 px-3 py-2 bg-languageBg rounded-2xl">
+            Português
+          </button>
         </header>
         <textarea
           name="toTranslate"
@@ -16,15 +18,17 @@ export default function App() {
           className="h-full w-full bg-transparent resize-none"
         ></textarea>
         <footer className="flex items-center gap-4">
-          <button className="text-textColor">Ouvir</button>
-          <button className="text-textColor">Copiar</button>
-          <button className="text-textColor">Translate</button>
+          <button className="text-textColor2 font-semibold">Ouvir</button>
+          <button className="text-textColor2 font-semibold">Copiar</button>
+          <button className="text-textColor2 font-semibold">Translate</button>
         </footer>
       </TranslateBox>
       <TranslateBox>
-        <header className="flex items-center gap-8">
-          <button className="text-textColor">English</button>
-          <button className="text-textColor">Inverter</button>
+        <header className="flex items-center gap-8 border-b border-border p-2 pb-4">
+          <button className="text-textColor2 p-2 font-semibold">English</button>
+          <button className="text-textColor2 p-2 font-semibold">
+            Inverter
+          </button>
         </header>
         <textarea
           name="toTranslate"
@@ -33,8 +37,8 @@ export default function App() {
           className="h-full w-full bg-transparent resize-none"
         ></textarea>
         <footer className="flex items-center gap-4">
-          <button className="text-textColor">Ouvir</button>
-          <button className="text-textColor">Copiar</button>
+          <button className="text-textColor2 font-semibold">Ouvir</button>
+          <button className="text-textColor2 font-semibold">Copiar</button>
         </footer>
       </TranslateBox>
     </Container>
