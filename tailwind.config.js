@@ -14,7 +14,6 @@ export default {
         // Image by: https://unsplash.com/pt-br/fotografias/aglomerado-de-ilustracao-de-estrela-f7YQo-eYHdM
       },
       width: {
-        38: "38%",
         128: "32rem",
         256: "64rem",
       },
