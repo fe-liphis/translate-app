@@ -1,9 +1,10 @@
+import Container from "./Components/UI/Container";
 import Logo from "./Components/UI/Logo";
 import TranslateBox from "./Components/UI/TranslateBox";
 
 export default function App() {
   return (
-    <main className="flex items-center justify-center content-center flex-wrap gap-6 w-full h-full">
+    <Container>
       <Logo />
       <TranslateBox>
         <header>
@@ -27,6 +28,6 @@ export default function App() {
           <button>Copiar</button>
         </footer>
       </TranslateBox>
-    </main>
+    </Container>
   );
 }
