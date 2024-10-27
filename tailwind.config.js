@@ -6,6 +6,7 @@ export default {
       colors: {
         boxF: "#0A0412",
         boxT: "#191226",
+        border: "#CDD5E0",
       },
       backgroundImage: {
         backgroundApp:

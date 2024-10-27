@@ -4,7 +4,7 @@ export default function App() {
       <h1 className="text-2xl font-bold text-center w-full mb-10 text-white">
         translated.io
       </h1>
-      <section className="bg-gradient-to-r from-boxF/90 to-boxT/90 h-38 w-38 rounded-3xl p-6 backdrop-blur-md">
+      <section className="bg-gradient-to-r from-boxF/95 to-boxT/95 h-38 w-38 rounded-3xl p-6 backdrop-blur-md border border-border/35 shadow-xl shadow-white/5">
         <header>
           <button>Português</button>
         </header>
@@ -15,7 +15,7 @@ export default function App() {
           <button>Translate</button>
         </footer>
       </section>
-      <section className="bg-gradient-to-r from-boxF/90 to-boxT/90 h-38 w-38 rounded-3xl p-6 backdrop-blur-md">
+      <section className="bg-gradient-to-r from-boxF/95 to-boxT/95 h-38 w-38 rounded-3xl p-6 backdrop-blur-md border border-border/35 shadow-xl shadow-white/5">
         <header>
           <button>English</button>
           <button>Inverter</button>
