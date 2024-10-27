@@ -7,22 +7,22 @@ export default function App() {
     <Container>
       <Logo />
       <TranslateBox>
-        <header>
+        <header className="flex items-center gap-8">
           <button className="text-textColor">Português</button>
         </header>
         <textarea
           name="toTranslate"
           id="toTranslate"
-          className="h-full w-full"
+          className="h-full w-full bg-transparent resize-none"
         ></textarea>
-        <footer>
+        <footer className="flex items-center gap-4">
           <button className="text-textColor">Ouvir</button>
           <button className="text-textColor">Copiar</button>
           <button className="text-textColor">Translate</button>
         </footer>
       </TranslateBox>
       <TranslateBox>
-        <header>
+        <header className="flex items-center gap-8">
           <button className="text-textColor">English</button>
           <button className="text-textColor">Inverter</button>
         </header>
@@ -30,9 +30,9 @@ export default function App() {
           name="toTranslate"
           id="toTranslate"
           readOnly
-          className="h-full w-full"
+          className="h-full w-full bg-transparent resize-none"
         ></textarea>
-        <footer>
+        <footer className="flex items-center gap-4">
           <button className="text-textColor">Ouvir</button>
           <button className="text-textColor">Copiar</button>
         </footer>
