@@ -8,24 +8,33 @@ export default function App() {
       <Logo />
       <TranslateBox>
         <header>
-          <button>Português</button>
+          <button className="text-textColor">Português</button>
         </header>
-        <textarea name="toTranslate" id="toTranslate"></textarea>
+        <textarea
+          name="toTranslate"
+          id="toTranslate"
+          className="h-full w-full"
+        ></textarea>
         <footer>
-          <button>Ouvir</button>
-          <button>Copiar</button>
-          <button>Translate</button>
+          <button className="text-textColor">Ouvir</button>
+          <button className="text-textColor">Copiar</button>
+          <button className="text-textColor">Translate</button>
         </footer>
       </TranslateBox>
       <TranslateBox>
         <header>
-          <button>English</button>
-          <button>Inverter</button>
+          <button className="text-textColor">English</button>
+          <button className="text-textColor">Inverter</button>
         </header>
-        <textarea name="toTranslate" id="toTranslate" readOnly></textarea>
+        <textarea
+          name="toTranslate"
+          id="toTranslate"
+          readOnly
+          className="h-full w-full"
+        ></textarea>
         <footer>
-          <button>Ouvir</button>
-          <button>Copiar</button>
+          <button className="text-textColor">Ouvir</button>
+          <button className="text-textColor">Copiar</button>
         </footer>
       </TranslateBox>
     </Container>

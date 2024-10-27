@@ -7,6 +7,7 @@ export default {
         boxF: "#222431",
         boxT: "#292C3F",
         border: "#4D5562",
+        textColor: "#F9FAFB",
       },
       backgroundImage: {
         backgroundApp:
