@@ -4,7 +4,7 @@ type TranslateBoxParams = {
 
 function TranslateBox({ children }: TranslateBoxParams) {
   return (
-    <section className="bg-gradient-to-r from-boxF/95 to-boxT/95 h-2/5 w-1/3 rounded-3xl p-6 backdrop-blur-md border border-border/35 shadow-xl shadow-white/5">
+    <section className="bg-gradient-to-r from-boxF/85 to-boxT/85 h-2/5 w-1/3 rounded-3xl p-6 backdrop-blur-md border-2 border-border shadow-xl shadow-white/5">
       {children}
     </section>
   );

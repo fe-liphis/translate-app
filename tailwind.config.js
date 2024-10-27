@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        boxF: "#0A0412",
-        boxT: "#191226",
-        border: "#CDD5E0",
+        boxF: "#222431",
+        boxT: "#292C3F",
+        border: "#4D5562",
       },
       backgroundImage: {
         backgroundApp:
