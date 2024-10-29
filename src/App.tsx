@@ -1,10 +1,34 @@
+import { useState } from "react";
 import Container from "./Components/UI/Container";
 import LanguageOption from "./Components/UI/LanguageOption";
 import Logo from "./Components/UI/Logo";
 import TranslateBox from "./Components/UI/TranslateBox";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
 
+type ApiResponseParams = {
+  responseData: {
+    translatedText: string;
+  };
+};
+
 export default function App() {
+  const [textToTranslate, setTextToTranslate] =
+    useState<string>("Olá, tudo bem ?");
+  const [translatedText, setTranslatedText] = useState<string>("");
+  const [languageToTranslated, setLanguageToTranslated] =
+    useState<string>("en");
+  const [language, setLanguage] = useState<string>("pt-Br");
+
+  function getTranslatedText() {
+    fetch(
+      `https://api.mymemory.translated.net/get?q=${textToTranslate}!&langpair=${language}|${languageToTranslated}`
+    )
+      .then((res) => res.json())
+      .then(({ responseData }: ApiResponseParams) => {
+        console.log(responseData);
+      });
+  }
+
   return (
     <Container>
       <Logo />
@@ -30,7 +54,12 @@ export default function App() {
             Inverter
           </button>
         </header>
-        <TranslateTextArea id="translated" name="translated" />
+        <TranslateTextArea
+          id="translated"
+          name="translated"
+          result={translatedText}
+          isDisabled
+        />
         <footer className="flex items-center gap-4">
           <fieldset className="flex items-center gap-4">
             <button className="text-textColor2 font-semibold">Ouvir</button>
