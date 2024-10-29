@@ -2,6 +2,7 @@ import Container from "./Components/UI/Container";
 import LanguageOption from "./Components/UI/LanguageOption";
 import Logo from "./Components/UI/Logo";
 import TranslateBox from "./Components/UI/TranslateBox";
+import TranslateTextArea from "./Components/UI/TranslateTextArea";
 
 export default function App() {
   return (
@@ -11,11 +12,7 @@ export default function App() {
         <header className="flex items-center gap-8 border-b border-border p-2 pb-4">
           <LanguageOption name="Português" />
         </header>
-        <textarea
-          name="toTranslate"
-          id="toTranslate"
-          className="h-full w-full bg-transparent resize-none text-textColor font-semibold p-2"
-        ></textarea>
+        <TranslateTextArea id="toTranslate" name="toTranslate" />
         <footer className="flex items-center gap-4 justify-between">
           <fieldset className="flex items-center gap-4">
             <button className="text-textColor2 font-semibold">Ouvir</button>
@@ -33,12 +30,7 @@ export default function App() {
             Inverter
           </button>
         </header>
-        <textarea
-          name="toTranslate"
-          id="toTranslate"
-          readOnly
-          className="h-full w-full bg-transparent resize-none text-textColor font-semibold p-2"
-        ></textarea>
+        <TranslateTextArea id="translated" name="translated" />
         <footer className="flex items-center gap-4">
           <fieldset className="flex items-center gap-4">
             <button className="text-textColor2 font-semibold">Ouvir</button>
