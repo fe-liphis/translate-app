@@ -3,13 +3,14 @@ type TranslateTextAreaParams = {
   id: string;
   isDisabled?: boolean;
   result?: string;
-};
+} & React.HTMLProps<HTMLTextAreaElement>;
 
 function TranslateTextArea({
   name,
   id,
   isDisabled,
   result,
+  ...rest
 }: TranslateTextAreaParams) {
   return (
     <textarea
@@ -18,6 +19,7 @@ function TranslateTextArea({
       disabled={isDisabled}
       value={result}
       className="h-full w-full bg-transparent resize-none text-textColor font-semibold p-2"
+      {...rest}
     />
   );
 }

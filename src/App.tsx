@@ -4,6 +4,7 @@ import LanguageOption from "./Components/UI/LanguageOption";
 import Logo from "./Components/UI/Logo";
 import TranslateBox from "./Components/UI/TranslateBox";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
+import useTranslate from "./hooks/useTranslate";
 
 type ApiResponseParams = {
   responseData: {
@@ -12,20 +13,32 @@ type ApiResponseParams = {
 };
 
 export default function App() {
-  const [textToTranslate, setTextToTranslate] =
-    useState<string>("Olá, tudo bem ?");
-  const [translatedText, setTranslatedText] = useState<string>("");
-  const [languageToTranslated, setLanguageToTranslated] =
-    useState<string>("en");
-  const [language, setLanguage] = useState<string>("pt-Br");
+  const {
+    language,
+    languageToTranslated,
+    textToTranslate,
+    translatedText,
+    setTextToTranslate,
+    setTranslatedText,
+    reverseLanguage,
+    setLanguage,
+    setLanguageToTranslated,
+  } = useTranslate();
 
   function getTranslatedText() {
+    setTranslatedText("Waiting translate...");
+
     fetch(
       `https://api.mymemory.translated.net/get?q=${textToTranslate}!&langpair=${language}|${languageToTranslated}`
     )
       .then((res) => res.json())
       .then(({ responseData }: ApiResponseParams) => {
+        setTranslatedText(responseData.translatedText);
         console.log(responseData);
+      })
+      .catch((error) => {
+        setTranslatedText("An error occured, try again later...");
+        console.log(error);
       });
   }
 
@@ -34,23 +47,41 @@ export default function App() {
       <Logo />
       <TranslateBox>
         <header className="flex items-center gap-8 border-b border-border p-2 pb-4">
-          <LanguageOption name="Português" />
+          <LanguageOption
+            name={language == "pt-Br" ? "Português" : "English"}
+          />
         </header>
-        <TranslateTextArea id="toTranslate" name="toTranslate" />
-        <footer className="flex items-center gap-4 justify-between">
+        <TranslateTextArea
+          id="toTranslate"
+          name="toTranslate"
+          onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setTextToTranslate(event.target.value)
+          }
+        />
+        <footer className="flex items-end gap-4 justify-between">
           <fieldset className="flex items-center gap-4">
             <button className="text-textColor2 font-semibold">Ouvir</button>
             <button className="text-textColor2 font-semibold">Copiar</button>
           </fieldset>
-          <button className="text-textColor2 font-semibold">Translate</button>
+          <button
+            className="text-textColor font-semibold bg-btnBlue py-3 px-8 border-btnBorder border rounded-xl"
+            onClick={getTranslatedText}
+          >
+            Translate
+          </button>
         </footer>
       </TranslateBox>
       <TranslateBox>
         <header className="flex items-center justify-between gap-8 border-b border-border p-2 pb-4">
           <fieldset>
-            <LanguageOption name="English" />
+            <LanguageOption
+              name={languageToTranslated == "en" ? "English" : "Português"}
+            />
           </fieldset>
-          <button className="text-textColor2 p-2 font-semibold">
+          <button
+            className="text-textColor2 p-2 font-semibold"
+            onClick={reverseLanguage}
+          >
             Inverter
           </button>
         </header>

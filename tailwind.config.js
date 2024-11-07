@@ -10,11 +10,14 @@ export default {
         textColor: "#F9FAFB",
         textColor2: "#7A879B",
         languageBg: "#4D5562",
+        btnBorder: "#7CA9F3",
       },
       backgroundImage: {
-        backgroundApp:
-          "url('./src/assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg')",
+        bgApp: "url('./src/assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg')",
         // Image by: https://unsplash.com/pt-br/fotografias/aglomerado-de-ilustracao-de-estrela-f7YQo-eYHdM
+      },
+      backgroundColor: {
+        btnBlue: "#3662E3",
       },
       width: {
         128: "32rem",
