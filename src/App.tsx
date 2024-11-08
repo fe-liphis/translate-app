@@ -1,10 +1,13 @@
-import { useState } from "react";
 import Container from "./Components/UI/Container";
 import LanguageOption from "./Components/UI/LanguageOption";
 import Logo from "./Components/UI/Logo";
 import TranslateBox from "./Components/UI/TranslateBox";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
 import useTranslate from "./hooks/useTranslate";
+import {
+  LangpairSupported,
+  languagesSupported,
+} from "./utils/languagesSupported";
 
 type ApiResponseParams = {
   responseData: {
@@ -46,14 +49,23 @@ export default function App() {
     <Container>
       <Logo />
       <TranslateBox>
-        <header className="flex items-center gap-8 border-b border-border p-2 pb-4">
-          <LanguageOption
-            name={language == "pt-Br" ? "Português" : "English"}
-          />
+        <header className="flex items-center gap-4 border-b border-border p-2 pb-4">
+          {Object.keys(languagesSupported).map((langpair) => (
+            <LanguageOption
+              key={"language:" + langpair}
+              name={languagesSupported[langpair as LangpairSupported]}
+              isActive={langpair === language}
+              onClick={() => {
+                if (langpair === languageToTranslated) reverseLanguage();
+                else setLanguage(langpair as LangpairSupported);
+              }}
+            />
+          ))}
         </header>
         <TranslateTextArea
           id="toTranslate"
           name="toTranslate"
+          result={textToTranslate}
           onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
             setTextToTranslate(event.target.value)
           }
@@ -72,11 +84,19 @@ export default function App() {
         </footer>
       </TranslateBox>
       <TranslateBox>
-        <header className="flex items-center justify-between gap-8 border-b border-border p-2 pb-4">
-          <fieldset>
-            <LanguageOption
-              name={languageToTranslated == "en" ? "English" : "Português"}
-            />
+        <header className="flex items-center justify-between border-b border-border p-2 pb-4">
+          <fieldset className="flex items-center gap-4">
+            {Object.keys(languagesSupported).map((langpair) => (
+              <LanguageOption
+                key={"languageToTranslate:" + langpair}
+                name={languagesSupported[langpair as LangpairSupported]}
+                isActive={langpair === languageToTranslated}
+                onClick={() => {
+                  if (langpair === language) reverseLanguage();
+                  else setLanguageToTranslated(langpair as LangpairSupported);
+                }}
+              />
+            ))}
           </fieldset>
           <button
             className="text-textColor2 p-2 font-semibold"

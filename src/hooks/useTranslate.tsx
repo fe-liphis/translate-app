@@ -1,16 +1,17 @@
 import { useState } from "react";
+import { LangpairSupported } from "../utils/languagesSupported";
 
 function useTranslate() {
-  const [textToTranslate, setTextToTranslate] = useState<string>();
-  const [translatedText, setTranslatedText] = useState<string>();
+  const [textToTranslate, setTextToTranslate] = useState<string>("");
+  const [translatedText, setTranslatedText] = useState<string>("");
   const [languageToTranslated, setLanguageToTranslated] =
-    useState<string>("en");
-  const [language, setLanguage] = useState<string>("pt-Br");
+    useState<LangpairSupported>("en");
+  const [language, setLanguage] = useState<LangpairSupported>("br");
 
   function reverseLanguage() {
     const textAux = textToTranslate;
     setTextToTranslate(translatedText);
-    setTranslatedText(textAux);
+    if (translatedText?.length > 0) setTranslatedText(textAux);
 
     const languageAux = language;
     setLanguage(languageToTranslated);
@@ -20,10 +21,10 @@ function useTranslate() {
   return {
     textToTranslate,
     translatedText,
-    setTextToTranslate,
-    setTranslatedText,
     languageToTranslated,
     language,
+    setTextToTranslate,
+    setTranslatedText,
     setLanguageToTranslated,
     setLanguage,
     reverseLanguage,
