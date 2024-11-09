@@ -5,6 +5,7 @@ import Logo from "./Components/UI/Logo";
 import ReverseIcon from "./Components/UI/ReverseIcon";
 import SoundIcon from "./Components/UI/SoundIcon";
 import TranslateBox from "./Components/UI/TranslateBox";
+import TranslateIcon from "./Components/UI/TranslateIcon";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
 import useTranslate from "./hooks/useTranslate";
 import {
@@ -112,10 +113,11 @@ export default function App() {
             </button>
           </fieldset>
           <button
-            className="text-textColor font-semibold bg-btnBlue py-3 px-8 border-btnBorder border rounded-xl"
+            className="text-textColor font-semibold bg-btnBlue py-3 px-6 border-btnBorder border rounded-xl flex items-center gap-3"
             onClick={getTranslatedText}
           >
-            Translate
+            <TranslateIcon />
+            <p>Translate</p>
           </button>
         </footer>
       </TranslateBox>
