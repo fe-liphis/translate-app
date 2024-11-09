@@ -1,6 +1,9 @@
 import Container from "./Components/UI/Container";
+import CopyIcon from "./Components/UI/CopyIcon";
 import LanguageOption from "./Components/UI/LanguageOption";
 import Logo from "./Components/UI/Logo";
+import ReverseIcon from "./Components/UI/ReverseIcon";
+import SoundIcon from "./Components/UI/SoundIcon";
 import TranslateBox from "./Components/UI/TranslateBox";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
 import useTranslate from "./hooks/useTranslate";
@@ -96,16 +99,16 @@ export default function App() {
         <footer className="flex items-end gap-4 justify-between">
           <fieldset className="flex items-center gap-4">
             <button
-              className="text-textColor2 font-semibold"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
               onClick={() => speechText("textToTranslate")}
             >
-              Ouvir
+              <SoundIcon />
             </button>
             <button
-              className="text-textColor2 font-semibold"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
               onClick={() => copyToClipboard("textToTranslate")}
             >
-              Copiar
+              <CopyIcon />
             </button>
           </fieldset>
           <button
@@ -132,10 +135,10 @@ export default function App() {
             ))}
           </fieldset>
           <button
-            className="text-textColor2 p-2 font-semibold"
+            className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
             onClick={reverseLanguage}
           >
-            Inverter
+            <ReverseIcon />
           </button>
         </header>
         <TranslateTextArea
@@ -147,16 +150,16 @@ export default function App() {
         <footer className="flex items-center gap-4">
           <fieldset className="flex items-center gap-4">
             <button
-              className="text-textColor2 font-semibold"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl "
               onClick={() => speechText("translatedText")}
             >
-              Ouvir
+              <SoundIcon />
             </button>
             <button
-              className="text-textColor2 font-semibold"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
               onClick={() => copyToClipboard("translatedText")}
             >
-              Copiar
+              <CopyIcon />
             </button>
           </fieldset>
         </footer>
