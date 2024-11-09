@@ -117,7 +117,7 @@ export default function App() {
             onClick={getTranslatedText}
           >
             <TranslateIcon />
-            <p>Translate</p>
+            Translate
           </button>
         </footer>
       </TranslateBox>
