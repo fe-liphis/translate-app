@@ -45,6 +45,12 @@ export default function App() {
       });
   }
 
+  function copyToClipboard(textArea: "textToTranslate" | "translatedText") {
+    if (textArea === "textToTranslate")
+      navigator.clipboard.writeText(textToTranslate);
+    else navigator.clipboard.writeText(translatedText);
+  }
+
   return (
     <Container>
       <Logo />
@@ -73,7 +79,12 @@ export default function App() {
         <footer className="flex items-end gap-4 justify-between">
           <fieldset className="flex items-center gap-4">
             <button className="text-textColor2 font-semibold">Ouvir</button>
-            <button className="text-textColor2 font-semibold">Copiar</button>
+            <button
+              className="text-textColor2 font-semibold"
+              onClick={() => copyToClipboard("textToTranslate")}
+            >
+              Copiar
+            </button>
           </fieldset>
           <button
             className="text-textColor font-semibold bg-btnBlue py-3 px-8 border-btnBorder border rounded-xl"
@@ -114,7 +125,12 @@ export default function App() {
         <footer className="flex items-center gap-4">
           <fieldset className="flex items-center gap-4">
             <button className="text-textColor2 font-semibold">Ouvir</button>
-            <button className="text-textColor2 font-semibold">Copiar</button>
+            <button
+              className="text-textColor2 font-semibold"
+              onClick={() => copyToClipboard("translatedText")}
+            >
+              Copiar
+            </button>
           </fieldset>
         </footer>
       </TranslateBox>
