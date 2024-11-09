@@ -29,26 +29,43 @@ export default function App() {
   } = useTranslate();
 
   function getTranslatedText() {
-    setTranslatedText("Waiting translate...");
+    if (textToTranslate.length > 0) {
+      setTranslatedText("Waiting translate...");
 
-    fetch(
-      `https://api.mymemory.translated.net/get?q=${textToTranslate}!&langpair=${language}|${languageToTranslated}`
-    )
-      .then((res) => res.json())
-      .then(({ responseData }: ApiResponseParams) => {
-        setTranslatedText(responseData.translatedText);
-        console.log(responseData);
-      })
-      .catch((error) => {
-        setTranslatedText("An error occured, try again later...");
-        console.log(error);
-      });
+      fetch(
+        `https://api.mymemory.translated.net/get?q=${textToTranslate}!&langpair=${language}|${languageToTranslated}`
+      )
+        .then((res) => res.json())
+        .then(({ responseData }: ApiResponseParams) => {
+          setTranslatedText(responseData.translatedText);
+          console.log(responseData);
+        })
+        .catch((error) => {
+          setTranslatedText("An error occured, try again later...");
+          console.log(error);
+        });
+    }
   }
 
   function copyToClipboard(textArea: "textToTranslate" | "translatedText") {
     if (textArea === "textToTranslate")
       navigator.clipboard.writeText(textToTranslate);
     else navigator.clipboard.writeText(translatedText);
+  }
+
+  function speechText(textArea: "textToTranslate" | "translatedText") {
+    let textToSpeech: SpeechSynthesisUtterance;
+    speechSynthesis.cancel();
+
+    if (textArea === "textToTranslate") {
+      textToSpeech = new SpeechSynthesisUtterance(textToTranslate);
+      textToSpeech.lang = language;
+    } else {
+      textToSpeech = new SpeechSynthesisUtterance(translatedText);
+      textToSpeech.lang = languageToTranslated;
+    }
+
+    speechSynthesis.speak(textToSpeech);
   }
 
   return (
@@ -78,7 +95,12 @@ export default function App() {
         />
         <footer className="flex items-end gap-4 justify-between">
           <fieldset className="flex items-center gap-4">
-            <button className="text-textColor2 font-semibold">Ouvir</button>
+            <button
+              className="text-textColor2 font-semibold"
+              onClick={() => speechText("textToTranslate")}
+            >
+              Ouvir
+            </button>
             <button
               className="text-textColor2 font-semibold"
               onClick={() => copyToClipboard("textToTranslate")}
@@ -124,7 +146,12 @@ export default function App() {
         />
         <footer className="flex items-center gap-4">
           <fieldset className="flex items-center gap-4">
-            <button className="text-textColor2 font-semibold">Ouvir</button>
+            <button
+              className="text-textColor2 font-semibold"
+              onClick={() => speechText("translatedText")}
+            >
+              Ouvir
+            </button>
             <button
               className="text-textColor2 font-semibold"
               onClick={() => copyToClipboard("translatedText")}
