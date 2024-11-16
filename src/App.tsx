@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Container from "./Components/UI/Container";
 import CopyIcon from "./Components/UI/CopyIcon";
 import LanguageOption from "./Components/UI/LanguageOption";
@@ -32,6 +33,16 @@ export default function App() {
     setLanguageToTranslated,
   } = useTranslate();
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const visibleTimeoutId = setTimeout(() => setIsVisible(false), 2000);
+
+    return () => {
+      clearTimeout(visibleTimeoutId);
+    };
+  }, [isVisible]);
+
   function getTranslatedText() {
     if (textToTranslate.length > 0) {
       setTranslatedText("Waiting translate...");
@@ -55,6 +66,8 @@ export default function App() {
     if (textArea === "textToTranslate")
       navigator.clipboard.writeText(textToTranslate);
     else navigator.clipboard.writeText(translatedText);
+
+    setIsVisible(true);
   }
 
   function speechText(textArea: "textToTranslate" | "translatedText") {
@@ -100,20 +113,20 @@ export default function App() {
         <footer className="flex items-end gap-4 justify-between">
           <fieldset className="flex items-center gap-4">
             <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
               onClick={() => speechText("textToTranslate")}
             >
               <SoundIcon />
             </button>
             <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
               onClick={() => copyToClipboard("textToTranslate")}
             >
               <CopyIcon />
             </button>
           </fieldset>
           <button
-            className="text-textColor font-semibold bg-btnBlue py-3 px-6 border-btnBorder border rounded-xl flex items-center gap-3"
+            className="text-textColor font-semibold bg-btnBlue py-3 px-6 border-btnBorder border-2 rounded-xl flex items-center gap-3 transition duration-500 hover:bg-textColor hover:text-textBlue hover:border-textBlue *:hover:fill-textBlue"
             onClick={getTranslatedText}
           >
             <TranslateIcon />
@@ -137,7 +150,7 @@ export default function App() {
             ))}
           </fieldset>
           <button
-            className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
+            className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
             onClick={reverseLanguage}
           >
             <ReverseIcon />
@@ -152,13 +165,13 @@ export default function App() {
         <footer className="flex items-center gap-4">
           <fieldset className="flex items-center gap-4">
             <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl "
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
               onClick={() => speechText("translatedText")}
             >
               <SoundIcon />
             </button>
             <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl"
+              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
               onClick={() => copyToClipboard("translatedText")}
             >
               <CopyIcon />
@@ -166,6 +179,14 @@ export default function App() {
           </fieldset>
         </footer>
       </TranslateBox>
+      <p
+        className={`${
+          isVisible ? "visible opacity-100" : "invisible opacity-0"
+        }  absolute bottom-5 right-5 h-10 w-56 bg-white rounded-md transition-all duration-500 flex items-center justify-center gap-2`}
+      >
+        <CopyIcon />
+        Copied to Clipboard
+      </p>
     </Container>
   );
 }

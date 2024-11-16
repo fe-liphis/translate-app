@@ -11,6 +11,7 @@ export default {
         textColor2: "#7A879B",
         languageBg: "#4D5562",
         btnBorder: "#7CA9F3",
+        textBlue: "#3662E3",
       },
       backgroundImage: {
         bgApp: "url('./src/assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg')",
