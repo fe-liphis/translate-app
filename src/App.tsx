@@ -1,19 +1,15 @@
 import Container from "./Components/UI/Container";
 import CopyIcon from "./Components/UI/CopyIcon";
-import LanguageOption from "./Components/UI/LanguageOption";
 import Logo from "./Components/UI/Logo";
-import ReverseIcon from "./Components/UI/ReverseIcon";
 import SoundIcon from "./Components/UI/SoundIcon";
 import TranslateBox from "./Components/UI/TranslateBox";
 import TranslateIcon from "./Components/UI/TranslateIcon";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
 import useTranslate from "./hooks/useTranslate";
-import {
-  LangpairSupported,
-  languagesSupported,
-} from "./utils/languagesSupported";
+import { LangpairSupported } from "./utils/languagesSupported";
 import Notification from "./Components/UI/Notification";
 import useNotification from "./hooks/useNotification";
+import TranslateHeader from "./Components/UI/TranslateHeader";
 
 type ApiResponseParams = {
   responseData: {
@@ -80,23 +76,29 @@ export default function App() {
     speechSynthesis.speak(textToSpeech);
   }
 
+  function onClickLanguage(
+    type: "toTranslate" | "translated",
+    langpair: string
+  ) {
+    if (type === "toTranslate") {
+      if (langpair === languageToTranslated) reverseLanguage();
+      else setLanguage(langpair as LangpairSupported);
+    } else if (type === "translated") {
+      if (langpair === language) reverseLanguage();
+      else setLanguageToTranslated(langpair as LangpairSupported);
+    }
+  }
+
   return (
     <Container>
       <Logo />
       <TranslateBox>
-        <header className="flex items-center gap-4 border-b border-border p-2 pb-4">
-          {Object.keys(languagesSupported).map((langpair) => (
-            <LanguageOption
-              key={"language:" + langpair}
-              name={languagesSupported[langpair as LangpairSupported]}
-              isActive={langpair === language}
-              onClick={() => {
-                if (langpair === languageToTranslated) reverseLanguage();
-                else setLanguage(langpair as LangpairSupported);
-              }}
-            />
-          ))}
-        </header>
+        <TranslateHeader
+          onClickReverse={reverseLanguage}
+          onClickLanguage={onClickLanguage}
+          type="toTranslate"
+          language={language}
+        />
         <TranslateTextArea
           id="toTranslate"
           name="toTranslate"
@@ -130,27 +132,12 @@ export default function App() {
         </footer>
       </TranslateBox>
       <TranslateBox>
-        <header className="flex items-center justify-between border-b border-border p-2 pb-4">
-          <fieldset className="flex items-center gap-4">
-            {Object.keys(languagesSupported).map((langpair) => (
-              <LanguageOption
-                key={"languageToTranslate:" + langpair}
-                name={languagesSupported[langpair as LangpairSupported]}
-                isActive={langpair === languageToTranslated}
-                onClick={() => {
-                  if (langpair === language) reverseLanguage();
-                  else setLanguageToTranslated(langpair as LangpairSupported);
-                }}
-              />
-            ))}
-          </fieldset>
-          <button
-            className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
-            onClick={reverseLanguage}
-          >
-            <ReverseIcon />
-          </button>
-        </header>
+        <TranslateHeader
+          onClickReverse={reverseLanguage}
+          onClickLanguage={onClickLanguage}
+          type="translated"
+          language={languageToTranslated}
+        />
         <TranslateTextArea
           id="translated"
           name="translated"
