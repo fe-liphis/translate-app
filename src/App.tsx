@@ -13,6 +13,7 @@ import {
   LangpairSupported,
   languagesSupported,
 } from "./utils/languagesSupported";
+import Notification from "./Components/UI/Notification";
 
 type ApiResponseParams = {
   responseData: {
@@ -179,14 +180,11 @@ export default function App() {
           </fieldset>
         </footer>
       </TranslateBox>
-      <p
-        className={`${
-          isVisible ? "visible opacity-100" : "invisible opacity-0"
-        }  absolute bottom-5 right-5 h-10 w-56 bg-white rounded-md transition-all duration-500 flex items-center justify-center gap-2`}
-      >
+
+      <Notification isVisible={isVisible}>
         <CopyIcon />
         Copied to Clipboard
-      </p>
+      </Notification>
     </Container>
   );
 }
