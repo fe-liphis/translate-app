@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Container from "./Components/UI/Container";
 import CopyIcon from "./Components/UI/CopyIcon";
 import LanguageOption from "./Components/UI/LanguageOption";
@@ -14,6 +13,7 @@ import {
   languagesSupported,
 } from "./utils/languagesSupported";
 import Notification from "./Components/UI/Notification";
+import useNotification from "./hooks/useNotification";
 
 type ApiResponseParams = {
   responseData: {
@@ -34,15 +34,7 @@ export default function App() {
     setLanguageToTranslated,
   } = useTranslate();
 
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const visibleTimeoutId = setTimeout(() => setIsVisible(false), 2000);
-
-    return () => {
-      clearTimeout(visibleTimeoutId);
-    };
-  }, [isVisible]);
+  const { isVisible, setIsVisible } = useNotification();
 
   function getTranslatedText() {
     if (textToTranslate.length > 0) {
@@ -64,11 +56,13 @@ export default function App() {
   }
 
   function copyToClipboard(textArea: "textToTranslate" | "translatedText") {
-    if (textArea === "textToTranslate")
+    if (textArea === "textToTranslate" && textToTranslate.length > 0) {
       navigator.clipboard.writeText(textToTranslate);
-    else navigator.clipboard.writeText(translatedText);
-
-    setIsVisible(true);
+      setIsVisible(true);
+    } else if (translatedText.length > 0) {
+      navigator.clipboard.writeText(translatedText);
+      setIsVisible(true);
+    }
   }
 
   function speechText(textArea: "textToTranslate" | "translatedText") {
