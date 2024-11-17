@@ -1,15 +1,14 @@
 import Container from "./Components/UI/Container";
 import CopyIcon from "./Components/UI/CopyIcon";
 import Logo from "./Components/UI/Logo";
-import SoundIcon from "./Components/UI/SoundIcon";
 import TranslateBox from "./Components/UI/TranslateBox";
-import TranslateIcon from "./Components/UI/TranslateIcon";
 import TranslateTextArea from "./Components/UI/TranslateTextArea";
 import useTranslate from "./hooks/useTranslate";
 import { LangpairSupported } from "./utils/languagesSupported";
 import Notification from "./Components/UI/Notification";
 import useNotification from "./hooks/useNotification";
 import TranslateHeader from "./Components/UI/TranslateHeader";
+import TranslateFooter from "./Components/UI/TranslateFooter";
 
 type ApiResponseParams = {
   responseData: {
@@ -51,8 +50,8 @@ export default function App() {
     }
   }
 
-  function copyToClipboard(textArea: "textToTranslate" | "translatedText") {
-    if (textArea === "textToTranslate" && textToTranslate.length > 0) {
+  function copyToClipboard(textArea: "toTranslate" | "translated") {
+    if (textArea === "toTranslate" && textToTranslate.length > 0) {
       navigator.clipboard.writeText(textToTranslate);
       setIsVisible(true);
     } else if (translatedText.length > 0) {
@@ -61,11 +60,11 @@ export default function App() {
     }
   }
 
-  function speechText(textArea: "textToTranslate" | "translatedText") {
+  function speechText(textArea: "toTranslate" | "translated") {
     let textToSpeech: SpeechSynthesisUtterance;
     speechSynthesis.cancel();
 
-    if (textArea === "textToTranslate") {
+    if (textArea === "toTranslate") {
       textToSpeech = new SpeechSynthesisUtterance(textToTranslate);
       textToSpeech.lang = language;
     } else {
@@ -107,29 +106,12 @@ export default function App() {
             setTextToTranslate(event.target.value)
           }
         />
-        <footer className="flex items-end gap-4 justify-between">
-          <fieldset className="flex items-center gap-4">
-            <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
-              onClick={() => speechText("textToTranslate")}
-            >
-              <SoundIcon />
-            </button>
-            <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
-              onClick={() => copyToClipboard("textToTranslate")}
-            >
-              <CopyIcon />
-            </button>
-          </fieldset>
-          <button
-            className="text-textColor font-semibold bg-btnBlue py-3 px-6 border-btnBorder border-2 rounded-xl flex items-center gap-3 transition duration-500 hover:bg-textColor hover:text-textBlue hover:border-textBlue *:hover:fill-textBlue"
-            onClick={getTranslatedText}
-          >
-            <TranslateIcon />
-            Translate
-          </button>
-        </footer>
+        <TranslateFooter
+          copyToClipboard={copyToClipboard}
+          getTranslatedText={getTranslatedText}
+          speechText={speechText}
+          type="toTranslate"
+        />
       </TranslateBox>
       <TranslateBox>
         <TranslateHeader
@@ -144,22 +126,12 @@ export default function App() {
           result={translatedText}
           isDisabled
         />
-        <footer className="flex items-center gap-4">
-          <fieldset className="flex items-center gap-4">
-            <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
-              onClick={() => speechText("translatedText")}
-            >
-              <SoundIcon />
-            </button>
-            <button
-              className="text-textColor2 p-1.5 font-semibold border-2 border-border rounded-xl transition duration-500 hover:bg-textColor2 hover:border-white *:hover:fill-textColor"
-              onClick={() => copyToClipboard("translatedText")}
-            >
-              <CopyIcon />
-            </button>
-          </fieldset>
-        </footer>
+        <TranslateFooter
+          copyToClipboard={copyToClipboard}
+          getTranslatedText={getTranslatedText}
+          speechText={speechText}
+          type="translated"
+        />
       </TranslateBox>
 
       <Notification isVisible={isVisible}>
