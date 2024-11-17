@@ -1,14 +1,14 @@
+import CopyIcon from "./Components/Icons/CopyIcon";
+import Notification from "./Components/UI/Notification";
+import TranslateBox from "./Components/Translate/TranslateBox";
+import TranslateFooter from "./Components/Translate/TranslateFooter";
+import TranslateHeader from "./Components/Translate/TranslateHeader";
+import TranslateTextArea from "./Components/Translate/TranslateTextArea";
 import Container from "./Components/UI/Container";
-import CopyIcon from "./Components/UI/CopyIcon";
 import Logo from "./Components/UI/Logo";
-import TranslateBox from "./Components/UI/TranslateBox";
-import TranslateTextArea from "./Components/UI/TranslateTextArea";
+import useNotification from "./hooks/useNotification";
 import useTranslate from "./hooks/useTranslate";
 import { LangpairSupported } from "./utils/languagesSupported";
-import Notification from "./Components/UI/Notification";
-import useNotification from "./hooks/useNotification";
-import TranslateHeader from "./Components/UI/TranslateHeader";
-import TranslateFooter from "./Components/UI/TranslateFooter";
 
 type ApiResponseParams = {
   responseData: {

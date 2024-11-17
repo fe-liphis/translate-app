@@ -1,6 +1,6 @@
-import CopyIcon from "./CopyIcon";
-import SoundIcon from "./SoundIcon";
-import TranslateIcon from "./TranslateIcon";
+import CopyIcon from "../Icons/CopyIcon";
+import SoundIcon from "../Icons/SoundIcon";
+import TranslateIcon from "../Icons/TranslateIcon";
 
 type TranslateFooterParams = {
   type: "toTranslate" | "translated";

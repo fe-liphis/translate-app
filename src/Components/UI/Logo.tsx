@@ -1,4 +1,4 @@
-import RocketIcon from "./RocketIcon";
+import RocketIcon from "../Icons/RocketIcon";
 
 function Logo() {
   return (

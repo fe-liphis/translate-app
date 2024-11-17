@@ -2,8 +2,8 @@ import {
   LangpairSupported,
   languagesSupported,
 } from "../../utils/languagesSupported";
+import ReverseIcon from "../Icons/ReverseIcon";
 import LanguageOption from "./LanguageOption";
-import ReverseIcon from "./ReverseIcon";
 
 type TranslateHeaderParams = {
   type: "toTranslate" | "translated";
